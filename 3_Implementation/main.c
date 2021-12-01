@@ -33,7 +33,7 @@ uint8_t seven_seg_digits[10][7] = {
 								{ 1,1,1,1,1,1,1 },  // = 8
 								{ 1,1,1,0,0,1,1 }   // = 9
 }
-void CalculateSeconds (bool time_display)
+void CalcSeconds (bool time_display)
 {
 	switch (time_display){
 		case 0:
@@ -77,7 +77,7 @@ void CalculateSeconds (bool time_display)
 		break;
 	}
 }
-void CalculateMinutes (bool time_display)
+void CalcuMinutes (bool time_display)
 {
 	switch (time_display){
 		case 0:
@@ -121,7 +121,7 @@ void CalculateMinutes (bool time_display)
 		break;
 	}	
 }
-void CalculateHours (bool time_display)
+void CalcHours (bool time_display)
 {
 	switch (time_display){
 		case 0:
