@@ -1,16 +1,3 @@
-/***********************************************
- * Name:
- *    CalculateSeconds
- * In:
- *    --
- * Out:
- *    --
- * Description:
- *    Function to write on 7 segments display
- *    It receives two arguments: the digit  
- *    and the display number to to be writed 
- *
- ************************************************/
 void CalculateSeconds (bool time_display)
 {
 	switch (time_display){
