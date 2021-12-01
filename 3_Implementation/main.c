@@ -1,7 +1,3 @@
-/*
- * 7-Segments-Display-ATMEGA328P.c
- */ 
-
 #define F_CPU 16000000UL
 #define PORT_ON(port,pin) port |= (1<<pin)
 #define PORT_OFF(port,pin) port &= ~(1<<pin)
@@ -36,20 +32,6 @@ uint8_t seven_seg_digits[10][7] = {
 								{ 1,1,1,1,1,1,1 },  // = 8
 								{ 1,1,1,0,0,1,1 }   // = 9
 };
-
-/***********************************************
- * Name:
- *    CalculateSeconds
- * In:
- *    --
- * Out:
- *    --
- * Description:
- *    Function to write on 7 segments display
- *    It receives two arguments: the digit  
- *    and the display number to to be writed 
- *
- ************************************************/
 void CalculateSeconds (bool time_display)
 {
 	switch (time_display){
@@ -93,21 +75,7 @@ void CalculateSeconds (bool time_display)
 				}
 		break;
 	}
-}//~~ end of CalculateSeconds
-
-/***********************************************
- * Name:
- *    CalculateMinutes
- * In:
- *    --
- * Out:
- *    --
- * Description:
- *    Function to write on 7 segments display
- *    It receives two arguments: the digit  
- *    and the display number to to be writed 
- *
- ************************************************/
+}
 void CalculateMinutes (bool time_display)
 {
 	switch (time_display){
@@ -151,21 +119,7 @@ void CalculateMinutes (bool time_display)
 				}
 		break;
 	}	
-}//~~ end of CalculateMinutes
-
-/***********************************************
- * Name:
- *    CalculateHours
- * In:
- *    --
- * Out:
- *    --
- * Description:
- *    Function to write on 7 segments display
- *    It receives two arguments: the digit  
- *    and the display number to to be writed 
- *
- ************************************************/
+}
 void CalculateHours (bool time_display)
 {
 	switch (time_display){
@@ -197,21 +151,7 @@ void CalculateHours (bool time_display)
 				}
 				break;	
 	}
-}//~~ end of CalculateHours
-
-/***********************************************
- * Name:
- *    WriteDisplays
- * In:
- *    int digit, int displayNum
- * Out:
- *    --
- * Description:
- *    Function to write on 7 segments display
- *    It receives two arguments: the digit  
- *    and the display number to to be writed 
- *
- ************************************************/
+}
 void WriteDisplays(uint8_t digit, uint8_t display_num) 
 {
 	uint8_t pin = 2;
@@ -254,72 +194,33 @@ void WriteDisplays(uint8_t digit, uint8_t display_num)
 			PORTB |= (seven_seg_digits[digit][segCount]<<0);
 		++pin;
 	}
-}//~~end of WriteDisplays
-
-/***********************************************
- * Name:
- *    InitADC
- * In:
- *    int digit, int display_num
- * Out:
- *    --
- * Description:
- *	  Function to initialized ADC conversion
- * 
- *
- ************************************************/
+}
 void InitADC ()
 {
-	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS0);		// ADEN: Set to turn on ADC , by default it is turned off
-	ADMUX = 0x00 | (1<<REFS0);							//ADPS2: ADPS2 and ADPS0 set to make division factor 32
-														// ADC input set to channel 0 and Vref <- AVcc
-}//~~ end of InitADC
-
-/***********************************************
- * Name:
- *    ReadADC
- * In:
- *    uint8_t channel
- * Out:
- *    adc_value
- * Description:
- *    Function to Read ADC Value
- *	  The channel to be read is entered as input
- *
- ************************************************/
+	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS0);		
+	ADMUX = 0x00 | (1<<REFS0);							
+														
+}
 uint16_t ReadADC (uint8_t channel)
 {
 	uint16_t adc_value;
 
-	ADMUX &= 0xF0;                    			//Clear the older channel that was read
-	ADMUX = channel | (1<<REFS0);				// ADC input channel set to channel and Vref <- AVcc
-	ADCSRA |= (1<<ADSC);						// Start conversion
-	while (ADCSRA & (1<<ADSC));					// wait for conversion to complete
+	ADMUX &= 0xF0;                    			
+	ADMUX = channel | (1<<REFS0);				
+	ADCSRA |= (1<<ADSC);						
+	while (ADCSRA & (1<<ADSC));					
 	
-	adc_value = ADCW;							//Store ADC value
+	adc_value = ADCW;							
 	return adc_value;
-}//~~ end of ReadADC
-
-/***********************************************
- * Name:
- *    main
- * In:
- *    --
- * Out:
- *    --
- * Description:
- *    Main function
- *
- *
- ************************************************/
+}
 int main(void)
 {
 	uint8_t pin, digit;
 	uint16_t adc_value;
-										  //Data Direction Register: 1 - output    0 - input
-	DDRD = 0b11111100;                    //7 segments bus control: PORTB(2,3,4,5)
-	DDRB = 0b00111111;					  //7 segments multiplexed leds: Arduino UNO pins 2 - 7: PORTD(2,3,4,5,6,7) and 8: PORTB0
-										  //Arduino pin 9: PB1 --- white LED 
+										
+	DDRD = 0b11111100;                    
+	DDRB = 0b00111111;				
+										  
 	PORTB |= (0<<PB2);
 	PORTB |= (1<<PB3);
 	PORTB |= (1<<PB4);
@@ -327,11 +228,11 @@ int main(void)
 	
 	InitADC();
 	
-	OCR1A = 0x3D08;							//Timer definitions
-	TCCR1B |= (1 << WGM12); 				// Mode 4, CTC on OCR1A
-	TIMSK1 |= (1 << OCIE1A);   				//Set interrupt on compare match
-	TCCR1B |= (1 << CS12) | (1 << CS10);  	// set prescaler to 1024 and start the timer
-	sei();									// enable interrupts
+	OCR1A = 0x3D08;							
+	TCCR1B |= (1 << WGM12); 				
+	TIMSK1 |= (1 << OCIE1A);   				
+	TCCR1B |= (1 << CS12) | (1 << CS10);  	
+	sei();									
 	
 	PORT_OFF(PORTB,1);
 	
