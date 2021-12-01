@@ -1,16 +1,3 @@
-/***********************************************
- * Name:
- *    CalculateHours
- * In:
- *    --
- * Out:
- *    --
- * Description:
- *    Function to write on 7 segments display
- *    It receives two arguments: the digit  
- *    and the display number to to be writed 
- *
- ************************************************/
 void CalculateHours (bool time_display)
 {
 	switch (time_display){
@@ -42,4 +29,4 @@ void CalculateHours (bool time_display)
 				}
 				break;	
 	}
-}//~~ end of CalculateHours
+}
