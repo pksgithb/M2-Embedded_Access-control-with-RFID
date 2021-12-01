@@ -81,13 +81,13 @@ In the other hand, using the 7 Segments Display array it is not necessary to con
 |5|1|16MHz Crystal|
 |6|2|22pF Capacitors|
 |7|1|100nF Capacitors|
-|8|1|7 Segments Display Array|
+|8|4|7 Segments Display Array|
 |9|1|Female P4 Jack|
 |10|1|10x5cm Universal Soldering Board|
 
 # Circuits:
 ![687474703a2f2f692e696d6775722e636f6d2f54354c4756756e2e706e67](https://user-images.githubusercontent.com/94304459/144249865-6aed259a-aa77-4d3f-976a-0cefbaa6ef25.png)
 
-# 7-Segment:
+# 7-Segment Display:
 ![687474703a2f2f692e696d6775722e636f6d2f364f46346c57352e676966](https://user-images.githubusercontent.com/94304459/144249879-5d7e0372-778b-4e07-9f21-f681954eecd4.gif)
 ![687474703a2f2f692e696d6775722e636f6d2f754f486a3854332e676966](https://user-images.githubusercontent.com/94304459/144249891-c7c9e48f-f6fb-4ba9-b40e-6dd55601cf84.gif)
