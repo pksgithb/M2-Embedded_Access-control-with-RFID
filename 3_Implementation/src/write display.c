@@ -1,16 +1,3 @@
-/***********************************************
- * Name:
- *    WriteDisplays
- * In:
- *    int digit, int displayNum
- * Out:
- *    --
- * Description:
- *    Function to write on 7 segments display
- *    It receives two arguments: the digit  
- *    and the display number to to be writed 
- *
- ************************************************/
 void WriteDisplays(uint8_t digit, uint8_t display_num) 
 {
 	uint8_t pin = 2;
@@ -53,4 +40,4 @@ void WriteDisplays(uint8_t digit, uint8_t display_num)
 			PORTB |= (seven_seg_digits[digit][segCount]<<0);
 		++pin;
 	}
-}//~~end of WriteDisplays
+}
