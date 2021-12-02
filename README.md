@@ -15,3 +15,9 @@
 | 6_ImagesAndVideos | Images and Videos related to project         |
 | 7_Other|other files related to project|
 
+
+https://app.codiga.io/project/30214/preferences
+
+## these are the actual badges it is unable to update in README file
+
+![Screenshot (191)](https://user-images.githubusercontent.com/94304459/144427440-05639ca9-adb3-4ea8-ad67-236d8fd6ad18.png)
